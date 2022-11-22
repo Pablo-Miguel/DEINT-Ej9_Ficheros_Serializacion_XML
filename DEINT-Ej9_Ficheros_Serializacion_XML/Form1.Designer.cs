@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,7 +47,9 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnMostrar = new System.Windows.Forms.Button();
             this.dgCliente = new System.Windows.Forms.DataGridView();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgCliente)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -109,6 +112,8 @@
             this.txtDNI.Name = "txtDNI";
             this.txtDNI.Size = new System.Drawing.Size(141, 20);
             this.txtDNI.TabIndex = 6;
+            this.txtDNI.Text = "12345678A";
+            this.txtDNI.Validating += new System.ComponentModel.CancelEventHandler(this.txtDNI_Validating);
             // 
             // txtNombre
             // 
@@ -116,6 +121,8 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(204, 20);
             this.txtNombre.TabIndex = 7;
+            this.txtNombre.Text = "Pablo";
+            this.txtNombre.Validating += new System.ComponentModel.CancelEventHandler(this.txtNombre_Validating);
             // 
             // txtDireccion
             // 
@@ -123,6 +130,8 @@
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(351, 20);
             this.txtDireccion.TabIndex = 8;
+            this.txtDireccion.Text = "dir";
+            this.txtDireccion.Validating += new System.ComponentModel.CancelEventHandler(this.txtDireccion_Validating);
             // 
             // txtEdad
             // 
@@ -130,6 +139,8 @@
             this.txtEdad.Name = "txtEdad";
             this.txtEdad.Size = new System.Drawing.Size(55, 20);
             this.txtEdad.TabIndex = 9;
+            this.txtEdad.Text = "19";
+            this.txtEdad.Validating += new System.ComponentModel.CancelEventHandler(this.txtEdad_Validating);
             // 
             // txtTelefono
             // 
@@ -137,6 +148,8 @@
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(123, 20);
             this.txtTelefono.TabIndex = 10;
+            this.txtTelefono.Text = "123456789";
+            this.txtTelefono.Validating += new System.ComponentModel.CancelEventHandler(this.txtTelefono_Validating);
             // 
             // txtNumCuentaCorriente
             // 
@@ -144,6 +157,8 @@
             this.txtNumCuentaCorriente.Name = "txtNumCuentaCorriente";
             this.txtNumCuentaCorriente.Size = new System.Drawing.Size(296, 20);
             this.txtNumCuentaCorriente.TabIndex = 11;
+            this.txtNumCuentaCorriente.Text = "ES1234567890786543234566";
+            this.txtNumCuentaCorriente.Validating += new System.ComponentModel.CancelEventHandler(this.txtNumCuentaCorriente_Validating);
             // 
             // label7
             // 
@@ -163,6 +178,7 @@
             this.btnAnadir.TabIndex = 13;
             this.btnAnadir.Text = "Añadir cliente";
             this.btnAnadir.UseVisualStyleBackColor = true;
+            this.btnAnadir.Click += new System.EventHandler(this.btnAnadir_Click);
             // 
             // btnModificar
             // 
@@ -199,6 +215,10 @@
             this.dgCliente.Size = new System.Drawing.Size(776, 171);
             this.dgCliente.TabIndex = 17;
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -225,6 +245,7 @@
             this.Name = "Form1";
             this.Text = "Banco";
             ((System.ComponentModel.ISupportInitialize)(this.dgCliente)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,6 +271,7 @@
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnMostrar;
         private System.Windows.Forms.DataGridView dgCliente;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }
 

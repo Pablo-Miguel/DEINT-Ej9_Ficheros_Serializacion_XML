@@ -12,5 +12,10 @@ namespace DEINT_Ej9_Ficheros_Serializacion_XML.Modelo
         [XmlElement("Banco")]
         public List<Cliente> clientes { get; set; }
 
+        public Banco()
+        {
+            clientes = new List<Cliente>();
+        }
+
     }
 }
