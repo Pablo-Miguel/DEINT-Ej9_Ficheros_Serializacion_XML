@@ -161,7 +161,6 @@ namespace DEINT_Ej9_Ficheros_Serializacion_XML
                 btnModificar.Text = "Guardar cambios";
                 btnAnadir.Enabled = false;
                 btnEliminar.Enabled = false;
-                btnMostrar.Enabled = false;
             }
             else {
                 if (this.ValidateChildren())
@@ -186,7 +185,6 @@ namespace DEINT_Ej9_Ficheros_Serializacion_XML
                     btnModificar.Text = "Modificar cliente";
                     btnAnadir.Enabled = true;
                     btnEliminar.Enabled = true;
-                    btnMostrar.Enabled = true;
                     txtDNI.Clear();
                     txtNombre.Clear();
                     txtDireccion.Clear();
@@ -235,7 +233,6 @@ namespace DEINT_Ej9_Ficheros_Serializacion_XML
                 btnCancelar.Visible = true;
                 btnAnadir.Enabled = false;
                 btnModificar.Enabled = false;
-                btnMostrar.Enabled = false;
             }
             else {
                 Cliente cliente = banco.clientes.Find(cli => cli.Equals(new Cliente(dni)));
@@ -258,7 +255,6 @@ namespace DEINT_Ej9_Ficheros_Serializacion_XML
                 txtNumCuentaCorriente.Enabled = true;
                 btnAnadir.Enabled = true;
                 btnModificar.Enabled = true;
-                btnMostrar.Enabled = true;
                 btnCancelar.Visible = false;
                 txtDNI.Clear();
                 txtNombre.Clear();
@@ -280,7 +276,6 @@ namespace DEINT_Ej9_Ficheros_Serializacion_XML
             txtNumCuentaCorriente.Enabled = true;
             btnAnadir.Enabled = true;
             btnModificar.Enabled = true;
-            btnMostrar.Enabled = true;
             btnCancelar.Visible = false;
             txtDNI.Clear();
             txtNombre.Clear();
@@ -310,7 +305,9 @@ namespace DEINT_Ej9_Ficheros_Serializacion_XML
             {
                 Banco b = (Banco)serializer.Deserialize(stream);
 
-                dgCliente.DataSource = b.clientes;
+                banco = b;
+
+                dgCliente.DataSource = banco.clientes;
             }
         }
     }

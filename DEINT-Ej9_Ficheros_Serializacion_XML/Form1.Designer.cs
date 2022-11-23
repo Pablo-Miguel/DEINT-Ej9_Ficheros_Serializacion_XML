@@ -45,7 +45,6 @@
             this.btnAnadir = new System.Windows.Forms.Button();
             this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnMostrar = new System.Windows.Forms.Button();
             this.dgCliente = new System.Windows.Forms.DataGridView();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -167,7 +166,7 @@
             // 
             // btnAnadir
             // 
-            this.btnAnadir.Location = new System.Drawing.Point(13, 210);
+            this.btnAnadir.Location = new System.Drawing.Point(103, 220);
             this.btnAnadir.Name = "btnAnadir";
             this.btnAnadir.Size = new System.Drawing.Size(153, 41);
             this.btnAnadir.TabIndex = 13;
@@ -177,7 +176,7 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(216, 210);
+            this.btnModificar.Location = new System.Drawing.Point(306, 220);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(153, 41);
             this.btnModificar.TabIndex = 14;
@@ -187,22 +186,13 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(419, 210);
+            this.btnEliminar.Location = new System.Drawing.Point(509, 220);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(153, 41);
             this.btnEliminar.TabIndex = 15;
             this.btnEliminar.Text = "Eliminar cliente";
             this.btnEliminar.UseVisualStyleBackColor = true;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
-            // btnMostrar
-            // 
-            this.btnMostrar.Location = new System.Drawing.Point(636, 210);
-            this.btnMostrar.Name = "btnMostrar";
-            this.btnMostrar.Size = new System.Drawing.Size(153, 41);
-            this.btnMostrar.TabIndex = 16;
-            this.btnMostrar.Text = "Mostrar datos cliente";
-            this.btnMostrar.UseVisualStyleBackColor = true;
             // 
             // dgCliente
             // 
@@ -219,7 +209,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(574, 210);
+            this.btnCancelar.Location = new System.Drawing.Point(664, 220);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(61, 41);
             this.btnCancelar.TabIndex = 18;
@@ -235,7 +225,6 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.dgCliente);
-            this.Controls.Add(this.btnMostrar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.btnAnadir);
@@ -281,7 +270,6 @@
         private System.Windows.Forms.Button btnAnadir;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnMostrar;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private System.Windows.Forms.DataGridView dgCliente;
         private System.Windows.Forms.Button btnCancelar;
