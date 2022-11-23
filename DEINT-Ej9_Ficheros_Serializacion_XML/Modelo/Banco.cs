@@ -7,7 +7,8 @@ using System.Xml.Serialization;
 
 namespace DEINT_Ej9_Ficheros_Serializacion_XML.Modelo
 {
-    internal class Banco
+    [Serializable]
+    public class Banco
     {
         [XmlElement("Banco")]
         public List<Cliente> clientes { get; set; }

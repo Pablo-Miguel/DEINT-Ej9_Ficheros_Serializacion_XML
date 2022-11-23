@@ -48,6 +48,7 @@
             this.btnMostrar = new System.Windows.Forms.Button();
             this.dgCliente = new System.Windows.Forms.DataGridView();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgCliente)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
@@ -112,7 +113,6 @@
             this.txtDNI.Name = "txtDNI";
             this.txtDNI.Size = new System.Drawing.Size(141, 20);
             this.txtDNI.TabIndex = 6;
-            this.txtDNI.Text = "12345678A";
             this.txtDNI.Validating += new System.ComponentModel.CancelEventHandler(this.txtDNI_Validating);
             // 
             // txtNombre
@@ -121,7 +121,6 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(204, 20);
             this.txtNombre.TabIndex = 7;
-            this.txtNombre.Text = "Pablo";
             this.txtNombre.Validating += new System.ComponentModel.CancelEventHandler(this.txtNombre_Validating);
             // 
             // txtDireccion
@@ -130,7 +129,6 @@
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(351, 20);
             this.txtDireccion.TabIndex = 8;
-            this.txtDireccion.Text = "dir";
             this.txtDireccion.Validating += new System.ComponentModel.CancelEventHandler(this.txtDireccion_Validating);
             // 
             // txtEdad
@@ -139,7 +137,6 @@
             this.txtEdad.Name = "txtEdad";
             this.txtEdad.Size = new System.Drawing.Size(55, 20);
             this.txtEdad.TabIndex = 9;
-            this.txtEdad.Text = "19";
             this.txtEdad.Validating += new System.ComponentModel.CancelEventHandler(this.txtEdad_Validating);
             // 
             // txtTelefono
@@ -148,7 +145,6 @@
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(123, 20);
             this.txtTelefono.TabIndex = 10;
-            this.txtTelefono.Text = "123456789";
             this.txtTelefono.Validating += new System.ComponentModel.CancelEventHandler(this.txtTelefono_Validating);
             // 
             // txtNumCuentaCorriente
@@ -157,7 +153,6 @@
             this.txtNumCuentaCorriente.Name = "txtNumCuentaCorriente";
             this.txtNumCuentaCorriente.Size = new System.Drawing.Size(296, 20);
             this.txtNumCuentaCorriente.TabIndex = 11;
-            this.txtNumCuentaCorriente.Text = "ES1234567890786543234566";
             this.txtNumCuentaCorriente.Validating += new System.ComponentModel.CancelEventHandler(this.txtNumCuentaCorriente_Validating);
             // 
             // label7
@@ -182,21 +177,23 @@
             // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(222, 210);
+            this.btnModificar.Location = new System.Drawing.Point(216, 210);
             this.btnModificar.Name = "btnModificar";
             this.btnModificar.Size = new System.Drawing.Size(153, 41);
             this.btnModificar.TabIndex = 14;
             this.btnModificar.Text = "Modificar cliente";
             this.btnModificar.UseVisualStyleBackColor = true;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(429, 210);
+            this.btnEliminar.Location = new System.Drawing.Point(419, 210);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(153, 41);
             this.btnEliminar.TabIndex = 15;
             this.btnEliminar.Text = "Eliminar cliente";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnMostrar
             // 
@@ -210,6 +207,7 @@
             // dgCliente
             // 
             this.dgCliente.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgCliente.Enabled = false;
             this.dgCliente.Location = new System.Drawing.Point(13, 267);
             this.dgCliente.Name = "dgCliente";
             this.dgCliente.Size = new System.Drawing.Size(776, 171);
@@ -219,11 +217,23 @@
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(574, 210);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(61, 41);
+            this.btnCancelar.TabIndex = 18;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Visible = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.dgCliente);
             this.Controls.Add(this.btnMostrar);
             this.Controls.Add(this.btnEliminar);
@@ -244,6 +254,8 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Banco";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgCliente)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
@@ -270,8 +282,9 @@
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnMostrar;
-        private System.Windows.Forms.DataGridView dgCliente;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.DataGridView dgCliente;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }
 

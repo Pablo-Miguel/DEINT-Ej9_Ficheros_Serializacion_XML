@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbClientes = new System.Windows.Forms.ComboBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -43,24 +43,25 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Seleccione un cliente:";
             // 
-            // comboBox1
+            // cbClientes
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.ItemHeight = 20;
-            this.comboBox1.Location = new System.Drawing.Point(16, 32);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(298, 28);
-            this.comboBox1.TabIndex = 1;
+            this.cbClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbClientes.FormattingEnabled = true;
+            this.cbClientes.ItemHeight = 20;
+            this.cbClientes.Location = new System.Drawing.Point(16, 32);
+            this.cbClientes.Name = "cbClientes";
+            this.cbClientes.Size = new System.Drawing.Size(298, 28);
+            this.cbClientes.TabIndex = 1;
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(87, 66);
+            this.btnAceptar.Location = new System.Drawing.Point(206, 85);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(153, 53);
+            this.btnAceptar.Size = new System.Drawing.Size(108, 30);
             this.btnAceptar.TabIndex = 2;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // FormSelect
             // 
@@ -68,7 +69,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(326, 127);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbClientes);
             this.Controls.Add(this.label1);
             this.Name = "FormSelect";
             this.Text = "Selecciona cliente";
@@ -80,7 +81,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbClientes;
         private System.Windows.Forms.Button btnAceptar;
     }
 }

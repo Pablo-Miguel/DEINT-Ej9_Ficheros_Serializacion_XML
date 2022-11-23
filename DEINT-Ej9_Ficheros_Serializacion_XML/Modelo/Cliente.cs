@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DEINT_Ej9_Ficheros_Serializacion_XML.Modelo
 {
-    internal class Cliente
+    [Serializable]
+    public class Cliente
     {
         public String dni { get; set; }
         public String nombre { get; set; }
@@ -25,5 +26,25 @@ namespace DEINT_Ej9_Ficheros_Serializacion_XML.Modelo
             this.num_cuenta_corriente = num_cuenta_corriente;
         }
 
+        public Cliente(string dni)
+        {
+            this.dni = dni;
+        }
+
+        public Cliente()
+        {
+
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Cliente cliente &&
+                   dni.Equals(cliente.dni);
+        }
+
+        public override int GetHashCode()
+        {
+            return 1456690394 + EqualityComparer<string>.Default.GetHashCode(dni);
+        }
     }
 }

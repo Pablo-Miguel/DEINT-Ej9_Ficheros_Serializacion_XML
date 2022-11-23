@@ -1,20 +1,26 @@
 ﻿using DEINT_Ej9_Ficheros_Serializacion_XML.Modelo;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace DEINT_Ej9_Ficheros_Serializacion_XML
 {
     public partial class Form1 : Form
     {
-        private Banco banco;
+        private FormSelect frm;
+        public String dni { get; set; } = String.Empty;
+        public Banco banco { get; set; }
         public Form1()
         {
             InitializeComponent();
@@ -113,6 +119,9 @@ namespace DEINT_Ej9_Ficheros_Serializacion_XML
                     Int32.Parse(txtEdad.Text), Int32.Parse(txtTelefono.Text), 
                     txtNumCuentaCorriente.Text));
 
+                dgCliente.DataSource = null;
+                dgCliente.DataSource = banco.clientes;
+
                 txtDNI.Clear();
                 txtNombre.Clear();
                 txtDireccion.Clear();
@@ -123,6 +132,185 @@ namespace DEINT_Ej9_Ficheros_Serializacion_XML
             else
             {
                 MessageBox.Show("Algún campo es incorrecto");
+            }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (btnModificar.Text.Equals("Modificar cliente"))
+            {
+                frm = new FormSelect(this);
+                frm.ShowDialog();
+
+                if (!dni.Equals(String.Empty))
+                {
+
+                    Cliente cliente = banco.clientes.Find(cli => cli.Equals(new Cliente(dni)));
+
+                    if (cliente != null)
+                    {
+                        txtDNI.Text = cliente.dni;
+                        txtNombre.Text = cliente.nombre;
+                        txtDireccion.Text = cliente.direccion;
+                        txtEdad.Text = cliente.edad.ToString();
+                        txtTelefono.Text = cliente.telefono.ToString();
+                        txtNumCuentaCorriente.Text = cliente.num_cuenta_corriente;
+                    }
+
+                }
+                btnModificar.Text = "Guardar cambios";
+                btnAnadir.Enabled = false;
+                btnEliminar.Enabled = false;
+                btnMostrar.Enabled = false;
+            }
+            else {
+                if (this.ValidateChildren())
+                {
+                    Cliente cliente = banco.clientes.Find(cli => cli.Equals(new Cliente(dni)));
+
+                    if (cliente != null)
+                    {
+                        int index = banco.clientes.IndexOf(cliente);
+
+                        if (index != -1)
+                        {
+                            banco.clientes[index] = new Cliente(txtDNI.Text, txtNombre.Text, txtDireccion.Text,
+                                Int32.Parse(txtEdad.Text), Int32.Parse(txtTelefono.Text),
+                                txtNumCuentaCorriente.Text);
+
+                            dgCliente.DataSource = null;
+                            dgCliente.DataSource = banco.clientes;
+                        }
+
+                    }
+                    btnModificar.Text = "Modificar cliente";
+                    btnAnadir.Enabled = true;
+                    btnEliminar.Enabled = true;
+                    btnMostrar.Enabled = true;
+                    txtDNI.Clear();
+                    txtNombre.Clear();
+                    txtDireccion.Clear();
+                    txtEdad.Clear();
+                    txtTelefono.Clear();
+                    txtNumCuentaCorriente.Clear();
+                }
+                else {
+                    MessageBox.Show("Algún campo es incorrecto");
+                }
+            }
+            
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (btnEliminar.Text.Equals("Eliminar cliente"))
+            {
+                frm = new FormSelect(this);
+                frm.ShowDialog();
+
+                if (!dni.Equals(String.Empty))
+                {
+                    Cliente cliente = banco.clientes.Find(cli => cli.Equals(new Cliente(dni)));
+
+                    if (cliente != null)
+                    {
+                        txtDNI.Text = cliente.dni;
+                        txtNombre.Text = cliente.nombre;
+                        txtDireccion.Text = cliente.direccion;
+                        txtEdad.Text = cliente.edad.ToString();
+                        txtTelefono.Text = cliente.telefono.ToString();
+                        txtNumCuentaCorriente.Text = cliente.num_cuenta_corriente;
+
+                        txtDNI.Enabled = false;
+                        txtNombre.Enabled = false;
+                        txtDireccion.Enabled = false;
+                        txtEdad.Enabled = false;
+                        txtTelefono.Enabled = false;
+                        txtNumCuentaCorriente.Enabled = false;
+                    }
+
+                }
+
+                btnEliminar.Text = "Confirmar borrado";
+                btnCancelar.Visible = true;
+                btnAnadir.Enabled = false;
+                btnModificar.Enabled = false;
+                btnMostrar.Enabled = false;
+            }
+            else {
+                Cliente cliente = banco.clientes.Find(cli => cli.Equals(new Cliente(dni)));
+
+                if (cliente != null)
+                {
+
+                    banco.clientes.Remove(cliente);
+
+                    dgCliente.DataSource = null;
+                    dgCliente.DataSource = banco.clientes;
+                }
+
+                btnEliminar.Text = "Eliminar cliente";
+                txtDNI.Enabled = true;
+                txtNombre.Enabled = true;
+                txtDireccion.Enabled = true;
+                txtEdad.Enabled = true;
+                txtTelefono.Enabled = true;
+                txtNumCuentaCorriente.Enabled = true;
+                btnAnadir.Enabled = true;
+                btnModificar.Enabled = true;
+                btnMostrar.Enabled = true;
+                btnCancelar.Visible = false;
+                txtDNI.Clear();
+                txtNombre.Clear();
+                txtDireccion.Clear();
+                txtEdad.Clear();
+                txtTelefono.Clear();
+                txtNumCuentaCorriente.Clear();
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            btnEliminar.Text = "Eliminar cliente";
+            txtDNI.Enabled = true;
+            txtNombre.Enabled = true;
+            txtDireccion.Enabled = true;
+            txtEdad.Enabled = true;
+            txtTelefono.Enabled = true;
+            txtNumCuentaCorriente.Enabled = true;
+            btnAnadir.Enabled = true;
+            btnModificar.Enabled = true;
+            btnMostrar.Enabled = true;
+            btnCancelar.Visible = false;
+            txtDNI.Clear();
+            txtNombre.Clear();
+            txtDireccion.Clear();
+            txtEdad.Clear();
+            txtTelefono.Clear();
+            txtNumCuentaCorriente.Clear();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            XmlSerializer serializer = new XmlSerializer(typeof(Banco));
+
+            using (var stream = new FileStream("banco.xml", FileMode.Create))
+            {
+                serializer.Serialize(stream, banco);
+            }
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            XmlSerializer serializer = new XmlSerializer(typeof(Banco));
+
+            using (var stream = new FileStream("banco.xml", FileMode.Open))
+            {
+                Banco b = (Banco)serializer.Deserialize(stream);
+
+                dgCliente.DataSource = b.clientes;
             }
         }
     }
