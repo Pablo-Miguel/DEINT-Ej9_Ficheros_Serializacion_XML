@@ -25,6 +25,7 @@ namespace DEINT_Ej9_Ficheros_Serializacion_XML
         {
             InitializeComponent();
             banco = new Banco();
+            this.ActiveControl = label1;
         }
 
         private void txtDNI_Validating(object sender, CancelEventArgs e)
@@ -299,15 +300,21 @@ namespace DEINT_Ej9_Ficheros_Serializacion_XML
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(Banco));
-
-            using (var stream = new FileStream("banco.xml", FileMode.Open))
+            try
             {
-                Banco b = (Banco)serializer.Deserialize(stream);
+                XmlSerializer serializer = new XmlSerializer(typeof(Banco));
 
-                banco = b;
+                using (var stream = new FileStream("banco.xml", FileMode.Open))
+                {
+                    Banco b = (Banco)serializer.Deserialize(stream);
 
-                dgCliente.DataSource = banco.clientes;
+                    banco = b;
+
+                    dgCliente.DataSource = banco.clientes;
+                }
+            }
+            catch { 
+            
             }
         }
     }

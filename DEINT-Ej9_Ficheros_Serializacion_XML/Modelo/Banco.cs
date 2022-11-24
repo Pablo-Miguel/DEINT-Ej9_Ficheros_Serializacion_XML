@@ -10,7 +10,6 @@ namespace DEINT_Ej9_Ficheros_Serializacion_XML.Modelo
     [Serializable]
     public class Banco
     {
-        [XmlElement("Banco")]
         public List<Cliente> clientes { get; set; }
 
         public Banco()
